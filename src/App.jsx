@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+import NavbarUser from './components/NavbarUser';
 import Singin from './pages/Singin';
 import Singup from './pages/Singup';
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import HomeUser from './pages/HomeUser'
+
 
 
 function App() {
@@ -27,7 +29,7 @@ function App() {
           {/* <Route path='*' element={<NotFound/>}   /> */}
         </Route>
 
-        <Route path="/user/" element={<Navbar/>}>
+        <Route path="/user/" element={<NavbarUser/>}>
           <Route  index element={<HomeUser/>}   />
           {/* <Route path='*' element={<NotFound/>}   /> */}
         </Route>

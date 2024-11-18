@@ -11,7 +11,6 @@ import App from './App.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-
     <script src="bootstrap/dist/js/bootstrap.js"></script>
   </StrictMode>
 )
