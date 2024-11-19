@@ -1,21 +1,26 @@
 import { NavLink } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
-
+import {ReactSession} from 'react-client-session';
 
 
 
 
 function NavbarUser(){
 
+    const user = ReactSession.get("User")
+
+    if(!user){
+        window.location = '/auth/singin';
+    }
 
 
     return(
         <>
             <header>
-                <nav className="navbar navbar-expand-lg bg-body-tertiary mb-5">
+                <nav className="navbar navbar-expand-lg bg-secondary mb-5">
                 
                     <div className="container-fluid">
-                        <NavLink className="navbar-brand" href="/">AQINO</NavLink>
+                        <NavLink className="navbar-brand" to="/">AQINO</NavLink>
         
                         <div className="d-flex justify-content-end">
                         
@@ -28,7 +33,13 @@ function NavbarUser(){
                                         <NavLink className="nav-link" to="/">Acceuil</NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/auth/singup">Se deconnecter</NavLink>
+                                        {
+                                            user?
+                                            <NavLink className="nav-link" to="/user/logout">Se deconnecter</NavLink>
+                                            :""
+
+                                        }
+                                        
                                     </li>
                                 </ul>
                             </div>

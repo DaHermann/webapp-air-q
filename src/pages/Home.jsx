@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-import Result from '../components/Result'
-
+import Result from '../components/Result';
+import {ReactSession} from "react-client-session";
 
 
 
@@ -10,6 +10,12 @@ const BASE_URL = "http://localhost:3000";
 
 
 function Home() {
+
+    const session_user = ReactSession.get("username");
+    
+    ReactSession.set('profile', 'Dev');
+
+    console.log('session_user : ', session_user);
 
     const [stations, setStations] = useState([])
     const [stationDataByDay, setStationDataByDay] = useState([])
@@ -60,7 +66,7 @@ function Home() {
                             <div className="input-group mb-3">
                                 <label className="input-group-text" htmlFor="StationName">Nom de la Station</label>
                                 <select ref={inputStationValue} className="form-control" name="stationName" id="StationName">
-                                    <option defaultValue>Choose...</option>
+                                    <option defaultValue>Choisir...</option>
                                     {stations.map((station)=>{
                                         return <option key={station.id} value={station.station_name}>{station.station_name}</option>
                                     })}
@@ -72,19 +78,19 @@ function Home() {
                                 <input ref={inputDateValue} className="form-control" type="date" name="date" id="Airdate" />
                             </div>
 
-                            <div className="input-group">
+                            <div className="input-group d-flex justify-content-center">
                                 <button className="btn btn-danger" onClick={Search}>Button</button>
                             </div>
                         </div>
                     </div>
-
+{/* 
 
                     <div className="col-md-4 bg-secondary">
                         <h2>Données Actuelles</h2>
                         <div>
                             
                         </div>
-                    </div>
+                    </div> */}
 
 
                     <div className="container-fluid row mt-5 d-flex align-items-center">
